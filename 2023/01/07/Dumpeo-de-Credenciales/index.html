@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
   <meta charset="UTF-8">
   <meta 
@@ -20,48 +20,6 @@
     href="https://cdn.discordapp.com/attachments/1013203875047682171/1061247547156480040/logo.jpg">
   <title>Dumpeo de Credenciales</title>
   
-    
-      <meta 
-        property="og:title" 
-        content="Dumpeo de Credenciales">
-    
-    
-      <meta 
-        property="og:url" 
-        content="http://l4isec.github.io/2023/01/07/Dumpeo-de-Credenciales/index.html">
-    
-    
-      <meta 
-        property="og:img" 
-        content="https://www.alternativesp.com/wp-content/uploads/2021/03/mimikatz-600x600.png">
-    
-    
-    
-      <meta 
-        property="og:type" 
-        content="article">
-      <meta 
-        property="og:article:published_time" 
-        content="2023-01-07">
-      <meta 
-        property="og:article:modified_time" 
-        content="2023-01-07">
-      <meta 
-        property="og:article:author" 
-        content="lai">
-      
-        
-          <meta 
-            property="og:article:tag" 
-            content="Active Directory">
-        
-          <meta 
-            property="og:article:tag" 
-            content="Red Team">
-        
-      
-    
-  
   
   <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
   <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
@@ -76,6 +34,8 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
   
   
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
   
   <script>
     function loadScript(url, cb) {
@@ -158,14 +118,15 @@
   
   
   
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
   
-    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
   
   
   
   
     
-    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-svg.js" as="script">
+    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" as="script">
   
   
   
@@ -194,7 +155,7 @@
         href="/" 
         class="navbar-menu-item">
         
-          首页
+          Home
         
       </a>
     
@@ -202,7 +163,7 @@
         href="/archives" 
         class="navbar-menu-item">
         
-          归档
+          Archive
         
       </a>
     
@@ -210,7 +171,7 @@
         href="/tags" 
         class="navbar-menu-item">
         
-          标签
+          Tags
         
       </a>
     
@@ -218,7 +179,7 @@
         href="/categories" 
         class="navbar-menu-item">
         
-          分类
+          Categories
         
       </a>
     
@@ -226,7 +187,7 @@
         href="/about" 
         class="navbar-menu-item">
         
-          关于
+          About
         
       </a>
     
@@ -234,7 +195,7 @@
         href="/links" 
         class="navbar-menu-item">
         
-          友链
+          Friends
         
       </a>
     
@@ -296,19 +257,19 @@
     class="author-posts-count" 
     href="/archives">
     <span>3</span>
-    <span>文章</span>
+    <span>Posts</span>
   </a>
   <a 
     class="author-categories-count" 
     href="/categories">
     <span>2</span>
-    <span>分类</span>
+    <span>Categories</span>
   </a>
   <a 
     class="author-tags-count" 
     href="/tags">
     <span>3</span>
-    <span>标签</span>
+    <span>Tags</span>
   </a>
 </div>
 
@@ -338,7 +299,7 @@
   <i 
     class="iconfont icon-menu" 
     style="padding-right: 2px;">
-  </i>目录
+  </i>TOC
 </div>
 <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dumpeo-de-Credenciales"><span class="toc-text">Dumpeo de Credenciales</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hashes-NTLM"><span class="toc-text">Hashes NTLM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kerberos-Encription-Keys"><span class="toc-text">Kerberos Encription Keys</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-Account-Manager"><span class="toc-text">Security Account Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Domain-Cached-Credentials"><span class="toc-text">Domain Cached Credentials</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Extraer-Kerberos-Tickets"><span class="toc-text">Extraer Kerberos Tickets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DCSync"><span class="toc-text">DCSync</span></a></li></ol>
       </div>
@@ -351,7 +312,7 @@
     <i 
       class="iconfont icon-fenlei" 
       style="padding-right: 2px;">
-    </i>分类
+    </i>Categories
   </div>
   <div class="categories-list">
     
@@ -379,7 +340,7 @@
     <i 
       class="iconfont icon-biaoqian" 
       style="padding-right: 2px;">
-    </i>热门标签
+    </i>hot tags
   </div>
   <div class="tags-list">
     
@@ -445,7 +406,7 @@
     
     
       <span class="dot"></span>
-      <span>331 字</span>
+      <span>331 words</span>
     
   </div>
   
@@ -561,7 +522,7 @@
         href="/2023/01/07/CRTO-Review/" 
         class="nav-link">
         <div>
-          <div class="nav-label">下一篇</div>
+          <div class="nav-label">Next</div>
           
             <div class="nav-title">Certified Red Team Operator (CRTO) Review </div>
           
@@ -579,7 +540,7 @@
   <i 
     class="iconfont icon-menu" 
     style="padding-right: 2px;">
-  </i>目录
+  </i>TOC
 </div>
 <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dumpeo-de-Credenciales"><span class="toc-text">Dumpeo de Credenciales</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hashes-NTLM"><span class="toc-text">Hashes NTLM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kerberos-Encription-Keys"><span class="toc-text">Kerberos Encription Keys</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-Account-Manager"><span class="toc-text">Security Account Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Domain-Cached-Credentials"><span class="toc-text">Domain Cached Credentials</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Extraer-Kerberos-Tickets"><span class="toc-text">Extraer Kerberos Tickets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DCSync"><span class="toc-text">DCSync</span></a></li></ol>
 </div>
@@ -593,7 +554,7 @@
   <i 
     class="iconfont icon-menu" 
     style="padding-right: 2px;">
-  </i>目录
+  </i>TOC
 </div>
 <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dumpeo-de-Credenciales"><span class="toc-text">Dumpeo de Credenciales</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hashes-NTLM"><span class="toc-text">Hashes NTLM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kerberos-Encription-Keys"><span class="toc-text">Kerberos Encription Keys</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Security-Account-Manager"><span class="toc-text">Security Account Manager</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Domain-Cached-Credentials"><span class="toc-text">Domain Cached Credentials</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Extraer-Kerberos-Tickets"><span class="toc-text">Extraer Kerberos Tickets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DCSync"><span class="toc-text">DCSync</span></a></li></ol>
     </article>
@@ -605,7 +566,7 @@
     <i 
       class="iconfont icon-wenzhang_huaban" 
       style="padding-right: 2px;">
-    </i>最近文章
+    </i>Recent Posts
   </div>
   <div class="recent-posts-list">
     
@@ -718,6 +679,36 @@
  
      
      
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
      
     <script src="/js/main.js"></script> 
     
@@ -725,23 +716,6 @@
         loadScript('/js/lib/busuanzi.min.js') 
       </script>
      
-    
-      <script>
-        var addLazyload = function () {
-          var observer = lozad('.lozad', {
-            load: function (el) {
-              el.srcset = el.getAttribute('data-src')
-            },
-            loaded: function (el) {
-              el.classList.add('loaded')
-            },
-          })
-          observer.observe()
-        }
-      </script>
-      <script>
-        loadScript('/js/lib/lozad.min.js', addLazyload)
-      </script>
     
     <script src="//instant.page/5.1.0" type="module"
       integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>

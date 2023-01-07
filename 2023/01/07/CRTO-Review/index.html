@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
   <meta charset="UTF-8">
   <meta 
@@ -20,52 +20,6 @@
     href="https://cdn.discordapp.com/attachments/1013203875047682171/1061247547156480040/logo.jpg">
   <title>Certified Red Team Operator (CRTO) Review</title>
   
-    
-      <meta 
-        property="og:title" 
-        content="Certified Red Team Operator (CRTO) Review">
-    
-    
-      <meta 
-        property="og:url" 
-        content="http://l4isec.github.io/2023/01/07/CRTO-Review/index.html">
-    
-    
-      <meta 
-        property="og:img" 
-        content="https://cdn.discordapp.com/attachments/1013203875047682171/1061033439169617980/CRTO.png">
-    
-    
-    
-      <meta 
-        property="og:type" 
-        content="article">
-      <meta 
-        property="og:article:published_time" 
-        content="2023-01-07">
-      <meta 
-        property="og:article:modified_time" 
-        content="2023-01-07">
-      <meta 
-        property="og:article:author" 
-        content="lai">
-      
-        
-          <meta 
-            property="og:article:tag" 
-            content="Review">
-        
-          <meta 
-            property="og:article:tag" 
-            content="Active Directory">
-        
-          <meta 
-            property="og:article:tag" 
-            content="Red Team">
-        
-      
-    
-  
   
   <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
   <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
@@ -80,6 +34,8 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
   
   
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
   
   <script>
     function loadScript(url, cb) {
@@ -162,14 +118,15 @@
   
   
   
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
   
-    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
   
   
   
   
     
-    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-svg.js" as="script">
+    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" as="script">
   
   
   
@@ -198,7 +155,7 @@
         href="/" 
         class="navbar-menu-item">
         
-          首页
+          Home
         
       </a>
     
@@ -206,7 +163,7 @@
         href="/archives" 
         class="navbar-menu-item">
         
-          归档
+          Archive
         
       </a>
     
@@ -214,7 +171,7 @@
         href="/tags" 
         class="navbar-menu-item">
         
-          标签
+          Tags
         
       </a>
     
@@ -222,7 +179,7 @@
         href="/categories" 
         class="navbar-menu-item">
         
-          分类
+          Categories
         
       </a>
     
@@ -230,7 +187,7 @@
         href="/about" 
         class="navbar-menu-item">
         
-          关于
+          About
         
       </a>
     
@@ -238,7 +195,7 @@
         href="/links" 
         class="navbar-menu-item">
         
-          友链
+          Friends
         
       </a>
     
@@ -300,19 +257,19 @@
     class="author-posts-count" 
     href="/archives">
     <span>3</span>
-    <span>文章</span>
+    <span>Posts</span>
   </a>
   <a 
     class="author-categories-count" 
     href="/categories">
     <span>2</span>
-    <span>分类</span>
+    <span>Categories</span>
   </a>
   <a 
     class="author-tags-count" 
     href="/tags">
     <span>3</span>
-    <span>标签</span>
+    <span>Tags</span>
   </a>
 </div>
 
@@ -342,7 +299,7 @@
   <i 
     class="iconfont icon-menu" 
     style="padding-right: 2px;">
-  </i>目录
+  </i>TOC
 </div>
 <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-text">Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mi-Background"><span class="toc-text">Mi Background</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Curso"><span class="toc-text">Curso</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Examen"><span class="toc-text">Examen</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusión</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recuros-interesantes"><span class="toc-text">Recuros interesantes</span></a></li></ol>
       </div>
@@ -355,7 +312,7 @@
     <i 
       class="iconfont icon-fenlei" 
       style="padding-right: 2px;">
-    </i>分类
+    </i>Categories
   </div>
   <div class="categories-list">
     
@@ -383,7 +340,7 @@
     <i 
       class="iconfont icon-biaoqian" 
       style="padding-right: 2px;">
-    </i>热门标签
+    </i>hot tags
   </div>
   <div class="tags-list">
     
@@ -449,7 +406,7 @@
     
     
       <span class="dot"></span>
-      <span>953 字</span>
+      <span>953 words</span>
     
   </div>
   
@@ -528,15 +485,9 @@
 <hr>
 <h2 id="Examen"><a href="#Examen" class="headerlink" title="Examen"></a>Examen</h2><p>Sobre el examen de la CRTO es de estilo CTF donde tienes en total 8 flags para recolectar en el laboratorio del examen y con el 75% de flags (6&#x2F;8) para aprobar y con 48 horas de examen en el cual puedes repartirlos entre 4 días. Con la prevía experiencia de haber examinado la CRTP en esta certificación a la hora del examen pude estar mas relajado, el examen que me tocó fue de simular un APT contra X objetivos con X dominios que no puedo especificar en la review. </p>
 <p>Terminé el curso el día 29&#x2F;12&#x2F;2022 y decidí examinarme el día siguiente 30&#x2F;12&#x2F;2022 sé que era una locura ya que esto significaba pasar el año nuevo haciendo un examen, pero yo ya me quería quitarme el peso de encima y puse el examen el día siguiente a las 12:00 AM . La noche anterior estuve mirando review por internet y la verdad podriamos decir que me intimidó demasiado el examen, donde había gente que no podía levantar los beacons o el Windows Defender detectaba y mataba el procesos al instante gastandose las primeras 10 horas del examen o el primer día solucionando estos problemas, pero por sorpresa en mi caso tardé 8 horas en total del examen para conseguir las 6&#x2F;8 flags suficientes para aprobar hoy es mi segundo día del examen y seguramente después de escribir esta review vuelva a enceder el laboratorio del examen y intentar conseguir las 2 flags restantes.</p>
-<img src="/2023/01/07/CRTO-Review/03.jpg" class="" alt="exam">
-
 <p>Respecto a la dificultad del examen para mí la verdad no ha sido demasiado difícil ya que venia con conocimientos previos de como “atacar” un Active Directory, no quiero decir que sea un examen regalado ya que en ciertos puntos vas a tener que <strong>think outside of the box</strong> para combinar métodos de ataque para comprometer una máquina del dominio o de otra forest. La dificultad en general de la certificaciones en mi opinión puede ser una certificación <strong>media&#x2F;alta</strong> (puede cambiar con el paso del tiempo).</p>
-<img src="/2023/01/07/CRTO-Review/02.jpg" class="" alt="image">
-
 <hr>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusión"></a>Conclusión</h2><p>Si estás buscando una certificación en el que puedas aprender sobre temas de red teaming y el  manejo de un C2 esta certificación diría yo que es la mejor y la perfecta para la gente que se esté iniciando en este campo cabe destacar que ZeroPoint Security sacó hace poco una acontinuación <strong>CRTL</strong> que es más avanzada entrando en temas de evasión de EDR y AV, pero bueno aun me queda un largo camino llegar hasta ahí. Esta ha sido mi review sobre esta certificación si tenéis alguna duda siempre podéis  encontrarme en <a target="_blank" rel="noopener" href="https://twitter.com/lairui03">Twitter</a> o <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/lairui-wu/">Linkedin</a> para hablarme :D un saludo y hasta la próxima. </p>
-<img src="/2023/01/07/CRTO-Review/04.jpg" class="" alt="badge">
-
 <h2 id="Recuros-interesantes"><a href="#Recuros-interesantes" class="headerlink" title="Recuros interesantes"></a>Recuros interesantes</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://medium.com/r3d-buck3t/attacking-kerberos-constrained-delegations-4a0eddc5bb13#f061">https://medium.com/r3d-buck3t/attacking-kerberos-constrained-delegations-4a0eddc5bb13#f061</a></li>
 <li><a target="_blank" rel="noopener" href="https://hausec.com/2021/07/26/cobalt-strike-and-tradecraft/">https://hausec.com/2021/07/26/cobalt-strike-and-tradecraft/</a></li>
@@ -579,7 +530,7 @@
         class="nav-link">
         <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
-          <div class="nav-label">上一篇</div>
+          <div class="nav-label">Prev</div>
           
             <div class="nav-title">Dumpeo de Credenciales </div>
           
@@ -593,7 +544,7 @@
         href="/2023/01/07/CRTP-Review/" 
         class="nav-link">
         <div>
-          <div class="nav-label">下一篇</div>
+          <div class="nav-label">Next</div>
           
             <div class="nav-title">Certified Red Team Professional (CRTP) Review </div>
           
@@ -611,7 +562,7 @@
   <i 
     class="iconfont icon-menu" 
     style="padding-right: 2px;">
-  </i>目录
+  </i>TOC
 </div>
 <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-text">Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mi-Background"><span class="toc-text">Mi Background</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Curso"><span class="toc-text">Curso</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Examen"><span class="toc-text">Examen</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusión</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recuros-interesantes"><span class="toc-text">Recuros interesantes</span></a></li></ol>
 </div>
@@ -625,7 +576,7 @@
   <i 
     class="iconfont icon-menu" 
     style="padding-right: 2px;">
-  </i>目录
+  </i>TOC
 </div>
 <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Overview"><span class="toc-text">Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mi-Background"><span class="toc-text">Mi Background</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Curso"><span class="toc-text">Curso</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Examen"><span class="toc-text">Examen</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusión</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recuros-interesantes"><span class="toc-text">Recuros interesantes</span></a></li></ol>
     </article>
@@ -637,7 +588,7 @@
     <i 
       class="iconfont icon-wenzhang_huaban" 
       style="padding-right: 2px;">
-    </i>最近文章
+    </i>Recent Posts
   </div>
   <div class="recent-posts-list">
     
@@ -750,6 +701,36 @@
  
      
      
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
      
     <script src="/js/main.js"></script> 
     
@@ -757,23 +738,6 @@
         loadScript('/js/lib/busuanzi.min.js') 
       </script>
      
-    
-      <script>
-        var addLazyload = function () {
-          var observer = lozad('.lozad', {
-            load: function (el) {
-              el.srcset = el.getAttribute('data-src')
-            },
-            loaded: function (el) {
-              el.classList.add('loaded')
-            },
-          })
-          observer.observe()
-        }
-      </script>
-      <script>
-        loadScript('/js/lib/lozad.min.js', addLazyload)
-      </script>
     
     <script src="//instant.page/5.1.0" type="module"
       integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
