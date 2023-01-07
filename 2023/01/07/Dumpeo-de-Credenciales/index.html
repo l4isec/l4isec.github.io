@@ -31,10 +31,6 @@
         content="http://l4isec.github.io/2023/01/07/Dumpeo-de-Credenciales/index.html">
     
     
-      <meta 
-        property="og:img" 
-        content="https://www.alternativesp.com/wp-content/uploads/2021/03/mimikatz-600x600.png">
-    
     
     
       <meta 
@@ -76,8 +72,6 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
   
   
-  
-    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
   
   <script>
     function loadScript(url, cb) {
@@ -160,14 +154,14 @@
   
   
   
-    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
-    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
-  
   
     <link rel="preload" href="/js/lib/lozad.min.js" as="script">
   
   
   
+  
+    
+    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-svg.js" as="script">
   
   
   
@@ -386,9 +380,9 @@
   <div class="tags-list">
     
       <a 
-        href="/tags/Review/" 
-        title="Review">
-        <div class="tags-list-item">Review</div>
+        href="/tags/Red-Team/" 
+        title="Red Team">
+        <div class="tags-list-item">Red Team</div>
       </a>
     
       <a 
@@ -398,9 +392,9 @@
       </a>
     
       <a 
-        href="/tags/Red-Team/" 
-        title="Red Team">
-        <div class="tags-list-item">Red Team</div>
+        href="/tags/Review/" 
+        title="Review">
+        <div class="tags-list-item">Review</div>
       </a>
     
   </div>
@@ -716,36 +710,9 @@
 </a> 
      
      
-     
-      <script>
-  var addImgLayout = function () {
-    var img = document.querySelectorAll('.post-content img')
-    var i
-    for (i = 0; i < img.length; i++) {
-      var wrapper = document.createElement('a')
-      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
-      wrapper.setAttribute('aria-label', 'illustration')
-      wrapper.style.cssText =
-        'width: 100%; display: flex; justify-content: center;'
-      if (img[i].alt) wrapper.dataset.caption = img[i].alt
-      wrapper.dataset.nolink = true
-      img[i].before(wrapper)
-      wrapper.append(img[i])
-      var divWrap = document.createElement('div')
-      divWrap.classList.add('gallery')
-      wrapper.before(divWrap)
-      divWrap.append(wrapper)
-    }
-    baguetteBox.run('.gallery')
-  }
-</script>
-<script>
-  loadScript(
-    "/js/lib/lightbox/baguetteBox.min.js",
-    addImgLayout
-  )
-</script>
+      
  
+     
      
      
     <script src="/js/main.js"></script> 
