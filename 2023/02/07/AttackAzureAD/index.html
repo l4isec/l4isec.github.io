@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Azure AD 渗透Part 1 - lai&#039; Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="lai"><meta name="msapplication-TileImage" content="/img/image.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="lai"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="个人Azure AD渗透笔记未完整。更新中"><meta property="og:type" content="lai&#039;s Blog"><meta property="og:title" content="Azure AD 渗透Part 1"><meta property="og:url" content="http://l4isec.github.io/2023/02/07/AttackAzureAD/"><meta property="og:site_name" content="lai&#039; Blog"><meta property="og:description" content="个人Azure AD渗透笔记未完整。更新中"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://www.serkanduran.com.tr/wp-content/uploads/2022/08/azure.jpg"><meta property="article:published_time" content="2023-02-07T08:41:34.000Z"><meta property="article:modified_time" content="2023-02-07T10:13:09.966Z"><meta property="article:author" content="lai"><meta property="article:tag" content="内网"><meta property="article:tag" content="红队"><meta property="article:tag" content="云"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://www.serkanduran.com.tr/wp-content/uploads/2022/08/azure.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://l4isec.github.io/2023/02/07/AttackAzureAD/"},"headline":"Azure AD 渗透Part 1","image":["https://www.serkanduran.com.tr/wp-content/uploads/2022/08/azure.jpg"],"datePublished":"2023-02-07T08:41:34.000Z","dateModified":"2023-02-07T10:13:09.966Z","author":{"@type":"Person","name":"lai"},"publisher":{"@type":"Organization","name":"lai' Blog","logo":{"@type":"ImageObject","url":"http://l4isec.github.io/img/avatar.png"}},"description":"个人Azure AD渗透笔记未完整。更新中"}</script><link rel="canonical" href="http://l4isec.github.io/2023/02/07/AttackAzureAD/"><link rel="icon" href="/img/image.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/avatar.png" alt="lai&#039; Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Github" href="https://github.com/lairui03"><i class="fab fa-github"></i></a><a class="navbar-item" target="_blank" rel="noopener" title="Linkedin" href="https://www.linkedin.com/in/lairui-wu/"><i class="fab fa-linkedin"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="https://www.serkanduran.com.tr/wp-content/uploads/2022/08/azure.jpg" alt="Azure AD 渗透Part 1"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-02-07T08:41:34.000Z" title="7/2/2023, 9:41:34">2023-02-07</time>发表</span><span class="level-item"><time dateTime="2023-02-07T10:13:09.966Z" title="7/2/2023, 11:13:09">2023-02-07</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">6 分钟读完 (大约956个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">Azure AD 渗透Part 1</h1><div class="content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Hello！！！大家好我们又见面了今天我给你们带来我学到的一些Azure AD知识，近几年很多大公司都开始替换我们普遍的Active Directory替换成了云利于方便。而且在大部分红队operations学会怎么渗透Azure AD已经是一种不可缺的skill，所以我确定了写这篇文章来分享。</p>
+<h1 id="什么是Azure-AD"><a href="#什么是Azure-AD" class="headerlink" title="什么是Azure AD"></a>什么是Azure AD</h1><p>首先我们得认识什么是Azure AD，这是一个<strong>Microsoft’s cloud based identity and access management service</strong> 我们可以理解为是<strong>一种基于云的标识和访问管理服务</strong>。 </p>
+<p>Azure AD可以用在：</p>
+<ul>
+<li>外界资源比如 Azure Portal， Office 365。</li>
+<li>内网资源，如场所内的应用程序。</li>
+</ul>
+<p>Azure AD可以为我们提供比较安全的远程访问如AD程序, 设备或者内网账户。可能这样听着有点乱以下的图片可以解释：</p>
+<img src="/2023/02/07/AttackAzureAD/image.png" class="" alt="Azure">
+
+<h1 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h1><p>在Azure AD我们也有一些<strong>术语</strong>就像我们常见的Active Directory。虽然名称上面会有不同但作用上都会有一些相似。</p>
+<h2 id="Enterprise"><a href="#Enterprise" class="headerlink" title="Enterprise"></a>Enterprise</h2><p>在这里存放这所有整体Azure AD账户。它是企业拥有并允许访问的独特身份如Tenants，subscriptions，services。</p>
+<h2 id="Tenants"><a href="#Tenants" class="headerlink" title="Tenants"></a>Tenants</h2><p>Azure AD的一个实例，代表一个组织。在普遍的Active Directory和forest也有相似度在内也可以建立一些Trust。。。</p>
+<h2 id="Azure-AD-Directory"><a href="#Azure-AD-Directory" class="headerlink" title="Azure AD Directory"></a>Azure AD Directory</h2><p>每个Tenat拥有一个独有的目录，它的用处在于访问一些资源</p>
+<h2 id="Subscriptions"><a href="#Subscriptions" class="headerlink" title="Subscriptions"></a>Subscriptions</h2><p>用于来订阅和付services。在一个目录里可以有多个订阅。</p>
+<h1 id="Azure建构"><a href="#Azure建构" class="headerlink" title="Azure建构"></a>Azure建构</h1><p>Azure内它自有一些独特的建构不像我们往常的Active Directory。</p>
+<ul>
+<li><strong>Management Groups</strong></li>
+<li><strong>Subscriptions</strong></li>
+<li><strong>Resources Groups</strong></li>
+<li><strong>Resources</strong></li>
+</ul>
+<img src="/2023/02/07/AttackAzureAD/Screenshot_2.jpg" class="" alt="Arch">
+
+<h2 id="Management-Groups"><a href="#Management-Groups" class="headerlink" title="Management Groups"></a>Management Groups</h2><p>它用于来管理多个服务订阅，一个management group可以被置于另一个management group的较低层次中但在每个一个MG里都会有个Top-Level Root MG，这个在我们普见的AD我理解为Parent&#x2F;Child Trusts。</p>
+<h2 id="Resources-Groups-和-Resources"><a href="#Resources-Groups-和-Resources" class="headerlink" title="Resources Groups 和 Resources"></a>Resources Groups 和 Resources</h2><p>资源是Azure中可部署的项目，如虚拟机、应用服务、存储 账户等，一个resources group我们理解为一个容器用于来存放资源当然这等于比较高的安全性因为每个资源都得归于一个resource group，如果我们删除一个RG等于我们会删除它里内所有存放的资源。</p>
+<h1 id="Pass-Through-Authentication"><a href="#Pass-Through-Authentication" class="headerlink" title="Pass Through Authentication"></a>Pass Through Authentication</h1><h2 id="通过认证将密码保留在内部，但也允许用户在Azure和内部有一个单一的密码。例如，当用户在网络上登录Outlook时，他们在网络门户（Azure-AD）中输入他们的凭证，然后Azure使用PKI对凭证进行加密，并将其发送给内部的一个代理。代理人对凭证进行解密，并对DC进行验证，DC将状态反馈给代理人，然后再转发到Azure-AD。"><a href="#通过认证将密码保留在内部，但也允许用户在Azure和内部有一个单一的密码。例如，当用户在网络上登录Outlook时，他们在网络门户（Azure-AD）中输入他们的凭证，然后Azure使用PKI对凭证进行加密，并将其发送给内部的一个代理。代理人对凭证进行解密，并对DC进行验证，DC将状态反馈给代理人，然后再转发到Azure-AD。" class="headerlink" title="通过认证将密码保留在内部，但也允许用户在Azure和内部有一个单一的密码。例如，当用户在网络上登录Outlook时，他们在网络门户（Azure AD）中输入他们的凭证，然后Azure使用PKI对凭证进行加密，并将其发送给内部的一个代理。代理人对凭证进行解密，并对DC进行验证，DC将状态反馈给代理人，然后再转发到Azure AD。"></a>通过认证将密码保留在内部，但也允许用户在Azure和内部有一个单一的密码。例如，当用户在网络上登录Outlook时，他们在网络门户（Azure AD）中输入他们的凭证，然后Azure使用PKI对凭证进行加密，并将其发送给内部的一个代理。代理人对凭证进行解密，并对DC进行验证，DC将状态反馈给代理人，然后再转发到Azure AD。<br><img src="/2023/02/07/AttackAzureAD/0_2C0dFGe4ZJWnbd3j.png" class="" alt="PTA"></h2><h1 id="Enumeration"><a href="#Enumeration" class="headerlink" title="Enumeration"></a>Enumeration</h1><p>解释完这些比较基本的的术语我们可以开始一些比较基本的enumeration来提取信息了。在这篇文章中我将会在用<a target="_blank" rel="noopener" href="https://www.powershellgallery.com/packages/AzureAD/2.0.2.140"><strong>Powershell Scripts</strong></a>.</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ipmo</span> AzureAD.psd1</span><br></pre></td></tr></table></figure>
+
+<h2 id="Users"><a href="#Users" class="headerlink" title="Users"></a>Users</h2><p>提取所有用户</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-AzureADUser</span> All <span class="variable">$true</span></span><br></pre></td></tr></table></figure>
+<img src="/2023/02/07/AttackAzureAD/Screenshot_1.jpg" class="" alt="Users">
+
+<p>提取特定的用户</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-AzureADUser</span> <span class="literal">-ObjectId</span> &lt;mail&gt;</span><br></pre></td></tr></table></figure>
+
+<p>寻找一个用户</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-AzureADUser</span> <span class="literal">-SearchString</span> <span class="string">&quot;admin&quot;</span></span><br></pre></td></tr></table></figure>
+<img src="/2023/02/07/AttackAzureAD/Screenshot_3.jpg" class="" alt="Pic">
+
+<p>列出一个用户的所有属性</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GetAzure<span class="literal">-ADUser</span> <span class="literal">-ObjectId</span> &lt;mail&gt;| <span class="built_in">fl</span> *</span><br></pre></td></tr></table></figure>
+
+<h2 id="Groups"><a href="#Groups" class="headerlink" title="Groups"></a>Groups</h2><p>列出所有的Group</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-AzureADGroup</span> <span class="literal">-All</span> <span class="variable">$true</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2023/02/07/AttackAzureAD/Screenshot_4.jpg" class="" alt="Groups">
+<p>提取特定的Group</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-AzureADGroup</span> <span class="literal">-ObjectId</span> &lt;ID&gt;</span><br></pre></td></tr></table></figure>
+
+<p>提取所有组别Dynamic Allow</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-AzureADMSGroup</span> |?&#123;<span class="variable">$_</span>.GroupTypes <span class="operator">-eq</span> <span class="string">&#x27;DynamicMembership&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>提取Group里的用户</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-AzureADGroupMember</span> <span class="literal">-ObjectId</span> &lt;ID&gt;</span><br></pre></td></tr></table></figure>
+<img src="/2023/02/07/AttackAzureAD/Screenshot_5.jpg" class="" alt="GroupMembers">
+
+
+
+
+
+</div><div class="article-licensing box"><div class="licensing-title"><p>Azure AD 渗透Part 1</p><p><a href="http://l4isec.github.io/2023/02/07/AttackAzureAD/">http://l4isec.github.io/2023/02/07/AttackAzureAD/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>lai</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2023-02-07</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2023-02-07</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E5%86%85%E7%BD%91/">内网</a><a class="link-muted mr-2" rel="tag" href="/tags/%E7%BA%A2%E9%98%9F/">红队</a><a class="link-muted mr-2" rel="tag" href="/tags/%E4%BA%91/">云</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/01/03/CRTO-Review/"><span class="level-item">认证红队操作员 (CRTO) 回顾</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/avatar.png" alt="lai"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">lai</p><p class="is-size-6 is-block">个人博客</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>马德里, 西班牙</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://www.linkedin.com/in/lairui-wu/" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/lairui03"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com/lairui03"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">笔记</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AE%A4%E8%AF%81/"><span class="level-start"><span class="level-item">认证</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><figure class="media-left"><a class="image" href="/2023/02/07/AttackAzureAD/"><img src="https://brandslogos.com/wp-content/uploads/images/large/azure-active-directory-logo.png" alt="Azure AD 渗透Part 1"></a></figure><div class="media-content"><p class="date"><time dateTime="2023-02-07T08:41:34.000Z">2023-02-07</time></p><p class="title"><a href="/2023/02/07/AttackAzureAD/">Azure AD 渗透Part 1</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2023/01/03/CRTO-Review/"><img src="https://cdn.discordapp.com/attachments/1013203875047682171/1061033439169617980/CRTO.png" alt="认证红队操作员 (CRTO) 回顾"></a></figure><div class="media-content"><p class="date"><time dateTime="2023-01-03T13:35:58.000Z">2023-01-03</time></p><p class="title"><a href="/2023/01/03/CRTO-Review/">认证红队操作员 (CRTO) 回顾</a></p><p class="categories"><a href="/categories/%E8%AE%A4%E8%AF%81/">认证</a></p></div></article><article class="media"><figure class="media-left"><a class="image" href="/2022/11/20/CRTP-Review/"><img src="https://cdn.discordapp.com/attachments/1013203875047682171/1061033607696765058/01.png" alt="认证红队专家（CRTP）回顾"></a></figure><div class="media-content"><p class="date"><time dateTime="2022-11-20T13:34:04.000Z">2022-11-20</time></p><p class="title"><a href="/2022/11/20/CRTP-Review/">认证红队专家（CRTP）回顾</a></p><p class="categories"><a href="/categories/%E8%AE%A4%E8%AF%81/">认证</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/02/"><span class="level-start"><span class="level-item">二月 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/01/"><span class="level-start"><span class="level-item">一月 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/11/"><span class="level-start"><span class="level-item">十一月 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/%E4%BA%91/"><span class="tag">云</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%85%E7%BD%91/"><span class="tag">内网</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BA%A2%E9%98%9F/"><span class="tag">红队</span><span class="tag">3</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/avatar.png" alt="lai&#039; Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 lai</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script>window.addEventListener("load", function() {
+            document.querySelectorAll('[role="article"] > .content').forEach(function(element) {
+                renderMathInElement(element);
+            });
+        });</script><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
